@@ -17,6 +17,19 @@ import Header from "./components/Header";
 const initCapacitor = () => {
   // This is a placeholder for any future Capacitor plugin initialization
   console.log("Capacitor initialized");
+  
+  // Add any additional Capacitor plugin initialization here
+  try {
+    // Check if running in a Capacitor context
+    if (window.Capacitor) {
+      console.log("Running in Capacitor environment");
+      
+      // Set the status bar color for iOS (if StatusBar plugin is added later)
+      document.documentElement.classList.add('capacitor-environment');
+    }
+  } catch (error) {
+    console.error("Capacitor initialization error:", error);
+  }
 };
 
 const queryClient = new QueryClient();
