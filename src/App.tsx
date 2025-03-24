@@ -21,7 +21,7 @@ const initCapacitor = () => {
   // Add any additional Capacitor plugin initialization here
   try {
     // Check if running in a Capacitor context
-    if (window.Capacitor) {
+    if (typeof window !== 'undefined' && window.hasOwnProperty('Capacitor')) {
       console.log("Running in Capacitor environment");
       
       // Set the status bar color for iOS (if StatusBar plugin is added later)
