@@ -353,3 +353,78 @@ export const connectService = (serviceId: string): void => {
     streamingServices[serviceIndex].connected = true;
   }
 };
+
+/**
+ * Get episodes based on a specific date and view (day, week, month)
+ */
+export const getEpisodesByDate = (
+  date: Date,
+  view: 'day' | 'week' | 'month'
+): Array<{show: Show, episode: Episode}> => {
+  const today = new Date(date);
+  today.setHours(0, 0, 0, 0);
+  
+  const upcomingEpisodes = getUpcomingEpisodes();
+  
+  return upcomingEpisodes.filter(({ episode }) => {
+    const episodeDate = new Date(episode.airDate);
+    episodeDate.setHours(0, 0, 0, 0);
+    
+    if (view === 'day') {
+      // Same day
+      return episodeDate.getTime() === today.getTime();
+    } else if (view === 'week') {
+      // Within the same week (7 days)
+      const weekLater = new Date(today);
+      weekLater.setDate(today.getDate() + 6);
+      return episodeDate >= today && episodeDate <= weekLater;
+    } else if (view === 'month') {
+      // Within the same month
+      return (
+        episodeDate.getMonth() === today.getMonth() &&
+        episodeDate.getFullYear() === today.getFullYear()
+      );
+    }
+    
+    return false;
+  });
+};
+
+/**
+ * Get all premiere dates (first episodes of new seasons)
+ */
+export const getPremiereDates = (): Array<{show: Show, episode: Episode}> => {
+  return getUpcomingEpisodes().filter(({ episode }) => {
+    return episode.episode === 1; // First episode of a season
+  });
+};
+
+// Add some additional dummy episodes for testing calendar functionality
+shows.forEach(show => {
+  if (show.nextEpisode) {
+    // Create weekly episodes
+    const episodes: Episode[] = [];
+    const baseDate = new Date(show.nextEpisode.airDate);
+    
+    // Add 10 weekly episodes for continuing shows
+    if (show.status === 'continuing') {
+      for (let i = 0; i < 10; i++) {
+        const episodeDate = new Date(baseDate);
+        episodeDate.setDate(baseDate.getDate() + (i * 7)); // Weekly
+        
+        episodes.push({
+          id: `${show.id}-s${show.nextEpisode.season}-e${show.nextEpisode.episode + i}`,
+          title: `Episode ${show.nextEpisode.episode + i}`,
+          season: show.nextEpisode.season,
+          episode: show.nextEpisode.episode + i,
+          runtime: show.nextEpisode.runtime,
+          airDate: episodeDate.toISOString(),
+          watched: false,
+          description: `This is episode ${show.nextEpisode.episode + i} of season ${show.nextEpisode.season}`,
+        });
+      }
+      
+      show.episodes = episodes;
+    }
+  }
+});

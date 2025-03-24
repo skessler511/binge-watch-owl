@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard"; 
 import Connect from "./pages/Connect";
 import Show from "./pages/Show";
+import CalendarPage from "./pages/CalendarPage";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 
@@ -53,6 +54,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/connect" element={<Connect />} />
               <Route path="/show/:id" element={<Show />} />
+              <Route path="/calendar" element={<CalendarPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
