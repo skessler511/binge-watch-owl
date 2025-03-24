@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { Bell, Menu, User } from 'lucide-react';
+import { Bell, Calendar, Menu, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -38,6 +38,7 @@ const Header = () => {
           <NavLink to="/" label="Home" active={location.pathname === '/'} />
           <NavLink to="/dashboard" label="Dashboard" active={location.pathname === '/dashboard'} />
           <NavLink to="/connect" label="Services" active={location.pathname === '/connect'} />
+          <NavLink to="/calendar" label="Calendar" active={location.pathname === '/calendar'} />
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -72,6 +73,7 @@ const Header = () => {
             <MobileNavLink to="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
             <MobileNavLink to="/dashboard" label="Dashboard" onClick={() => setMobileMenuOpen(false)} />
             <MobileNavLink to="/connect" label="Services" onClick={() => setMobileMenuOpen(false)} />
+            <MobileNavLink to="/calendar" label="Calendar" onClick={() => setMobileMenuOpen(false)} />
           </nav>
         </div>
       )}

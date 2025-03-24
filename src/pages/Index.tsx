@@ -1,6 +1,5 @@
-
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Calendar, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -51,6 +50,18 @@ const Index = () => {
                 <Link to="/connect">
                   <Play size={18} />
                   <span>Connect Services</span>
+                </Link>
+              </Button>
+              
+              <Button 
+                asChild
+                size="lg" 
+                variant="secondary" 
+                className="text-md font-bold gap-2 h-12 px-8 transition-all duration-300 transform hover:scale-105"
+              >
+                <Link to="/calendar">
+                  <Calendar size={18} />
+                  <span>Show Calendar</span>
                 </Link>
               </Button>
             </div>
@@ -170,6 +181,9 @@ const Index = () => {
               </Link>
               <Link to="/connect" className="text-gray-400 hover:text-white transition-colors">
                 Services
+              </Link>
+              <Link to="/calendar" className="text-gray-400 hover:text-white transition-colors">
+                Calendar
               </Link>
             </div>
           </div>
