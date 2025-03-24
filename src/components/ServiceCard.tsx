@@ -19,6 +19,12 @@ const ServiceCard = ({ service, onConnect }: ServiceCardProps) => {
   
   // Custom color mapping for Tailwind
   const getColorClasses = (color: string) => {
+    // Handle built-in colors
+    if (color.startsWith('bg-')) {
+      return color.replace('bg-', 'from-') + ' to-' + color.replace('bg-', '');
+    }
+    
+    // Handle named services
     switch(color) {
       case 'netflix': return 'from-red-600 to-red-700';
       case 'hulu': return 'from-green-500 to-green-600';
@@ -26,12 +32,18 @@ const ServiceCard = ({ service, onConnect }: ServiceCardProps) => {
       case 'disney': return 'from-blue-600 to-blue-700';
       case 'hbo': return 'from-purple-600 to-purple-700';
       case 'apple': return 'from-gray-500 to-gray-600';
-      default: return 'from-gray-400 to-gray-500';
+      // Handle color strings directly
+      default: 
+        if (color.includes('-')) {
+          const [hue, shade] = color.split('-');
+          return `from-${hue}-${parseInt(shade) - 100} to-${color}`;
+        }
+        return 'from-gray-400 to-gray-500';
     }
   };
   
   return (
-    <div className="rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="rounded-xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950 shadow-sm hover:shadow-md transition-all duration-300 feature-card-hover">
       <div 
         className={cn(
           "h-24 flex items-center justify-center bg-gradient-to-r p-4",

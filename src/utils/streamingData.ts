@@ -1,10 +1,11 @@
-
 export interface StreamingService {
   id: string;
   name: string;
   color: string;
   logo: string;
   connected: boolean;
+  category?: string;
+  popular?: boolean;
 }
 
 export interface Episode {
@@ -41,26 +42,15 @@ export interface Show {
 
 // Mock data for streaming services
 export const streamingServices: StreamingService[] = [
+  // Popular Services
   {
     id: 'netflix',
     name: 'Netflix',
     color: 'netflix',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg',
     connected: true,
-  },
-  {
-    id: 'hulu',
-    name: 'Hulu',
-    color: 'hulu',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg',
-    connected: true,
-  },
-  {
-    id: 'prime',
-    name: 'Prime Video',
-    color: 'prime',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png',
-    connected: false,
+    category: 'popular',
+    popular: true,
   },
   {
     id: 'disney',
@@ -68,6 +58,26 @@ export const streamingServices: StreamingService[] = [
     color: 'disney',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg',
     connected: false,
+    category: 'popular',
+    popular: true,
+  },
+  {
+    id: 'hulu',
+    name: 'Hulu',
+    color: 'hulu',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg',
+    connected: true,
+    category: 'popular',
+    popular: true,
+  },
+  {
+    id: 'prime',
+    name: 'Prime Video',
+    color: 'prime',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png',
+    connected: false,
+    category: 'popular',
+    popular: true,
   },
   {
     id: 'hbo',
@@ -75,6 +85,8 @@ export const streamingServices: StreamingService[] = [
     color: 'hbo',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg',
     connected: false,
+    category: 'popular',
+    popular: true,
   },
   {
     id: 'apple',
@@ -82,6 +94,130 @@ export const streamingServices: StreamingService[] = [
     color: 'apple',
     logo: 'https://upload.wikimedia.org/wikipedia/commons/a/ad/AppleTVLogo.svg',
     connected: false,
+    category: 'popular',
+    popular: true,
+  },
+  {
+    id: 'peacock',
+    name: 'Peacock',
+    color: 'blue-500',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d3/NBCUniversal_Peacock_Logo.svg',
+    connected: false,
+    category: 'popular',
+    popular: true,
+  },
+  {
+    id: 'paramount',
+    name: 'Paramount+',
+    color: 'blue-800',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Paramount_Plus.svg',
+    connected: false,
+    category: 'popular',
+    popular: true,
+  },
+  
+  // Sports
+  {
+    id: 'espn',
+    name: 'ESPN+',
+    color: 'red-600',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/ESPN%2B_logo.svg',
+    connected: false,
+    category: 'sports',
+  },
+  {
+    id: 'dazn',
+    name: 'DAZN',
+    color: 'black',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/DAZN_Logo_Master.svg/2560px-DAZN_Logo_Master.svg.png',
+    connected: false,
+    category: 'sports',
+  },
+  {
+    id: 'nba',
+    name: 'NBA League Pass',
+    color: 'blue-600',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/03/National_Basketball_Association_logo.svg/1200px-National_Basketball_Association_logo.svg.png',
+    connected: false,
+    category: 'sports',
+  },
+  
+  // International
+  {
+    id: 'crunchyroll',
+    name: 'Crunchyroll',
+    color: 'orange-500',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Crunchyroll_Logo.png',
+    connected: false,
+    category: 'international',
+  },
+  {
+    id: 'britbox',
+    name: 'BritBox',
+    color: 'blue-400',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/7/7c/Britbox_logo.png',
+    connected: false,
+    category: 'international',
+  },
+  {
+    id: 'viki',
+    name: 'Viki',
+    color: 'red-500',
+    logo: 'https://upload.wikimedia.org/wikipedia/en/5/51/Viki_Logo.png',
+    connected: false,
+    category: 'international',
+  },
+  
+  // Niche
+  {
+    id: 'criterion',
+    name: 'Criterion Channel',
+    color: 'black',
+    logo: 'https://images.squarespace-cdn.com/content/v1/5ec68396084ae4665a29a8e6/1591299018959-2XIVB9WIC2JSP2P9D08J/criterion-channel-logo.png',
+    connected: false,
+    category: 'niche',
+  },
+  {
+    id: 'shudder',
+    name: 'Shudder',
+    color: 'red-800',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Shudder_logo.png',
+    connected: false,
+    category: 'niche',
+  },
+  {
+    id: 'mubi',
+    name: 'MUBI',
+    color: 'black',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Mubi_logo.svg',
+    connected: false,
+    category: 'niche',
+  },
+  
+  // Free Services
+  {
+    id: 'tubi',
+    name: 'Tubi',
+    color: 'red-500',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/8/81/Tubi_Logo_2020.svg',
+    connected: false,
+    category: 'free',
+  },
+  {
+    id: 'pluto',
+    name: 'Pluto TV',
+    color: 'yellow-400',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Pluto_TV_2020_logo.svg/1200px-Pluto_TV_2020_logo.svg.png',
+    connected: false,
+    category: 'free',
+  },
+  {
+    id: 'freevee',
+    name: 'Amazon Freevee',
+    color: 'yellow-500',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Freevee.svg/2560px-Freevee.svg.png',
+    connected: false,
+    category: 'free',
   },
 ];
 
@@ -92,7 +228,7 @@ export const shows: Show[] = [
     title: 'Stranger Things',
     description: 'When a young boy disappears, his mother, a police chief, and his friends must confront terrifying supernatural forces in order to get him back.',
     poster: 'https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg',
-    backdrop: 'https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg',
+    backdrop: 'https://m.media-amazon.com/images/M/MV5BZGExYjQzNTQtNGNhMi00YmY1LTlhY2MtMTRjODg3MjU4YTAyXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg',
     service: 'netflix',
     rating: 8.7,
     releaseYear: 2016,
