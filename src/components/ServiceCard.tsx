@@ -3,6 +3,7 @@ import { StreamingService, connectService } from "@/utils/streamingData";
 import { Button } from "@/components/ui/button";
 import { Plus, Check, Link as LinkIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 interface ServiceCardProps {
   service: StreamingService;
@@ -50,11 +51,20 @@ const ServiceCard = ({ service, onConnect }: ServiceCardProps) => {
           getColorClasses(service.color)
         )}
       >
-        <img 
-          src={service.logo} 
-          alt={service.name} 
-          className="h-full max-w-full object-contain" 
-        />
+        {service.logo && (
+          <img 
+            src={service.logo} 
+            alt={service.name} 
+            className="h-full max-w-full object-contain" 
+            loading="eager"
+            onError={(e) => {
+              // Fallback for image load errors
+              const target = e.target as HTMLImageElement;
+              target.onerror = null;
+              target.src = 'placeholder.svg';
+            }}
+          />
+        )}
       </div>
       
       <div className="p-4">
