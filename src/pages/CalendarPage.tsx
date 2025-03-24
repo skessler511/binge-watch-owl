@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { format, addMonths, isSameDay, isSameMonth } from "date-fns";
 import { Calendar } from "@/components/ui/calendar";
@@ -160,30 +159,14 @@ const CalendarPage = () => {
                 showOutsideDays
               />
               
-              <div className="mt-4 flex border rounded-lg overflow-hidden">
-                <TabsList className="w-full grid grid-cols-3">
-                  <TabsTrigger 
-                    value="day" 
-                    onClick={() => setView("day")}
-                    data-state={view === "day" ? "active" : "inactive"}
-                  >
-                    Day
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="week" 
-                    onClick={() => setView("week")}
-                    data-state={view === "week" ? "active" : "inactive"}
-                  >
-                    Week
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="month" 
-                    onClick={() => setView("month")}
-                    data-state={view === "month" ? "active" : "inactive"}
-                  >
-                    Month
-                  </TabsTrigger>
-                </TabsList>
+              <div className="mt-4">
+                <Tabs defaultValue={view} onValueChange={(value) => setView(value as "day" | "week" | "month")}>
+                  <TabsList className="w-full grid grid-cols-3">
+                    <TabsTrigger value="day">Day</TabsTrigger>
+                    <TabsTrigger value="week">Week</TabsTrigger>
+                    <TabsTrigger value="month">Month</TabsTrigger>
+                  </TabsList>
+                </Tabs>
               </div>
             </div>
           </div>
